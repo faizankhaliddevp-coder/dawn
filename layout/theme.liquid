@@ -14,6 +14,9 @@
     {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <title>
       {{ page_title }}
@@ -48,14 +51,6 @@
     %}
 
     {% style %}
-      @font-face {
-        font-family: 'Velour';
-        src: url({{ 'velour__.woff2' | asset_url }}) format('woff2');
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-
       {{ settings.type_body_font | font_face: font_display: 'swap' }}
       {{ body_font_bold | font_face: font_display: 'swap' }}
       {{ body_font_italic | font_face: font_display: 'swap' }}
@@ -257,20 +252,20 @@
       }
 
       body {
-        font-family: 'Velour', sans-serif !important;
+        font-family: 'Montserrat', sans-serif !important;
       }
 
       :root {
-        --font-body-family: 'Velour', sans-serif !important;
-        --font-heading-family: 'Velour', sans-serif !important;
+        --font-body-family: 'Montserrat', sans-serif !important;
+        --font-heading-family: 'Montserrat', sans-serif !important;
       }
 
       h1, h2, h3, h4, h5, h6, p, a, span, li, input, button, select, textarea, div {
-        font-family: 'Velour', sans-serif !important;
+        font-family: 'Montserrat', sans-serif !important;
       }
 
       * {
-        font-family: 'Velour', sans-serif !important;
+        font-family: 'Montserrat', sans-serif !important;
       }
     {% endstyle %}
 
