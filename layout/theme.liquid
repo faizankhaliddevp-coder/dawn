@@ -48,6 +48,14 @@
     %}
 
     {% style %}
+      @font-face {
+        font-family: 'Velour';
+        src: url({{ 'velour__.woff2' | asset_url }}) format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+      }
+
       {{ settings.type_body_font | font_face: font_display: 'swap' }}
       {{ body_font_bold | font_face: font_display: 'swap' }}
       {{ body_font_italic | font_face: font_display: 'swap' }}
@@ -248,10 +256,21 @@
         font-weight: var(--font-body-weight);
       }
 
-      @media screen and (min-width: 750px) {
-        body {
-          font-size: 1.6rem;
-        }
+      body {
+        font-family: 'Velour', sans-serif !important;
+      }
+
+      :root {
+        --font-body-family: 'Velour', sans-serif !important;
+        --font-heading-family: 'Velour', sans-serif !important;
+      }
+
+      h1, h2, h3, h4, h5, h6, p, a, span, li, input, button, select, textarea, div {
+        font-family: 'Velour', sans-serif !important;
+      }
+
+      * {
+        font-family: 'Velour', sans-serif !important;
       }
     {% endstyle %}
 
