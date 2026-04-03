@@ -1,0 +1,236 @@
+{%- style -%}
+  .teks-hero-{{ section.id }} {
+    position: relative;
+    width: 100%;
+    height: {{ section.settings.desktop_height }}vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  @media screen and (max-width: 749px) {
+    .teks-hero-{{ section.id }} {
+      height: {{ section.settings.mobile_height }}vh;
+    }
+  }
+
+  .teks-hero__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .teks-hero__bg img, .teks-hero__bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: {{ section.settings.image_position }};
+  }
+
+  .teks-hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});
+    z-index: 2;
+  }
+
+  .teks-hero__content {
+    position: relative;
+    z-index: 3;
+    max-width: 80rem;
+    padding: 0 3rem;
+    text-align: {{ section.settings.text_alignment }};
+    color: #FFFFFF;
+  }
+
+  .teks-hero__title {
+    font-size: clamp(3.2rem, 8vw, 7.2rem) !important;
+    line-height: 1 !important;
+    margin-bottom: 2rem !important;
+    color: #FFFFFF !important;
+    text-transform: uppercase;
+  }
+
+  .teks-hero__description {
+    font-size: clamp(1.6rem, 2vw, 2rem);
+    margin-bottom: 4rem;
+    opacity: 0.9;
+    max-width: 60rem;
+    {% if section.settings.text_alignment == 'center' %}margin-left: auto; margin-right: auto;{% endif %}
+  }
+
+  .teks-hero__buttons {
+    display: flex;
+    gap: 2rem;
+    justify-content: {% if section.settings.text_alignment == 'center' %}center{% elsif section.settings.text_alignment == 'right' %}flex-end{% else %}flex-start{% endif %};
+  }
+
+  .teks-hero__buttons .button {
+    min-width: 20rem;
+    background: #FFFFFF !important;
+    color: #1A1A1A !important;
+    border-color: #FFFFFF !important;
+  }
+
+  .teks-hero__buttons .button:hover {
+    background: transparent !important;
+    color: #FFFFFF !important;
+  }
+
+  .teks-hero__buttons .button--secondary {
+    background: transparent !important;
+    color: #FFFFFF !important;
+    border-color: #FFFFFF !important;
+  }
+
+  .teks-hero__buttons .button--secondary:hover {
+    background: #FFFFFF !important;
+    color: #1A1A1A !important;
+  }
+{%- endstyle -%}
+
+<div class="teks-hero-{{ section.id }}">
+  <div class="teks-hero__bg">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 3840 | image_tag: 
+         loading: 'eager',
+         sizes: '100vw',
+         widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840' 
+      }}
+    {%- else -%}
+      <img src="{{ 'teks-hero.png' | asset_url }}" alt="{{ section.settings.title }}" loading="eager" width="1920" height="1080">
+    {%- endif -%}
+  </div>
+
+  <div class="teks-hero__overlay"></div>
+
+  <div class="teks-hero__content page-width">
+    {%- if section.settings.title != blank -%}
+      <h2 class="teks-hero__title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+    
+    {%- if section.settings.description != blank -%}
+      <div class="teks-hero__description">{{ section.settings.description }}</div>
+    {%- endif -%}
+
+    <div class="teks-hero__buttons">
+      {%- if section.settings.button_label_1 != blank -%}
+        <a href="{{ section.settings.button_link_1 }}" class="button primary-button">{{ section.settings.button_label_1 }}</a>
+      {%- endif -%}
+      {%- if section.settings.button_label_2 != blank -%}
+        <a href="{{ section.settings.button_link_2 }}" class="button button--secondary">{{ section.settings.button_label_2 }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Teks Teks Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image focal point",
+      "options": [
+        { "value": "top", "label": "Top" },
+        { "value": "center", "label": "Center" },
+        { "value": "bottom", "label": "Bottom" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 10,
+      "unit": "%",
+      "label": "Overlay Opacity",
+      "default": 20
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Luxury interiors, beautifully curated"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Furniture and décor designed to elevate modern homes."
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "range",
+      "id": "desktop_height",
+      "min": 40,
+      "max": 100,
+      "step": 10,
+      "unit": "vh",
+      "label": "Desktop Height",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 40,
+      "max": 100,
+      "step": 10,
+      "unit": "vh",
+      "label": "Mobile Height",
+      "default": 70
+    },
+    {
+      "type": "text",
+      "id": "button_label_1",
+      "label": "Primary Button Label",
+      "default": "Shop Bestsellers"
+    },
+    {
+      "type": "url",
+      "id": "button_link_1",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "button_label_2",
+      "label": "Secondary Button Label",
+      "default": "Shop New In"
+    },
+    {
+      "type": "url",
+      "id": "button_link_2",
+      "label": "Secondary Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Teks Teks Hero"
+    }
+  ]
+}
+{% endschema %}

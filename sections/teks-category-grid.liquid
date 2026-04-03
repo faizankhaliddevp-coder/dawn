@@ -1,0 +1,193 @@
+{%- style -%}
+  .teks-category-grid-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}rem;
+    padding-bottom: {{ section.settings.padding_bottom }}rem;
+    background-color: var(--color-neutral-200);
+  }
+
+  .teks-category-grid__title {
+    text-align: center;
+    margin-bottom: 6rem;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .teks-category-grid__items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4rem 2rem;
+  }
+
+  .teks-category-grid__item {
+    width: calc(25% - 2rem);
+    min-width: 15rem;
+    text-decoration: none;
+    text-align: center;
+    group: hover;
+  }
+
+  @media screen and (max-width: 989px) {
+    .teks-category-grid__item {
+      width: calc(33.33% - 2rem);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .teks-category-grid__item {
+      width: calc(50% - 1rem);
+    }
+  }
+
+  .teks-category-grid__image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    background: #F4F1E6;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .teks-category-grid__item:hover .teks-category-grid__image-wrapper {
+    transform: scale(1.03);
+  }
+
+  .teks-category-grid__image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .teks-category-grid__label {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 1.3rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    color: var(--color-neutral-700);
+    transition: color 0.3s ease;
+  }
+
+  .teks-category-grid__item:hover .teks-category-grid__label {
+    color: var(--color-neutral-800);
+  }
+{%- endstyle -%}
+
+<section class="teks-category-grid-{{ section.id }} page-width">
+  {%- if section.settings.title != blank -%}
+    <h2 class="teks-category-grid__title">{{ section.settings.title }}</h2>
+  {%- endif -%}
+
+  <div class="teks-category-grid__items">
+    {%- for block in section.blocks -%}
+      <a href="{{ block.settings.collection.url }}" class="teks-category-grid__item" {{ block.shopify_attributes }}>
+        <div class="teks-category-grid__image-wrapper">
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 400 | image_tag: 
+               class: 'motion-reduce',
+               loading: 'lazy',
+               widths: '200, 400, 600'
+            }}
+          {%- elsif block.settings.collection.featured_image != blank -%}
+            {{ block.settings.collection.featured_image | image_url: width: 400 | image_tag:
+               class: 'motion-reduce',
+               loading: 'lazy',
+               widths: '200, 400, 600'
+            }}
+          {%- else -%}
+            {% assign placeholder_name = 'teks-cat-' | append: forloop.index | append: '.png' %}
+            {% case forloop.index %}
+              {% when 2 %}
+                 {% assign placeholder_name = 'teks-cat-seating.png' %}
+              {% when 3 %}
+                 {% assign placeholder_name = 'teks-cat-tables.png' %}
+              {% when 4 %}
+                 {% assign placeholder_name = 'teks-cat-lighting.png' %}
+              {% else %}
+                 {% assign placeholder_name = 'teks-cat-seating.png' %}
+            {% endcase %}
+            <img src="{{ placeholder_name | asset_url }}" alt="{{ block.settings.title }}" loading="lazy" width="400" height="400">
+          {%- endif -%}
+        </div>
+        <span class="teks-category-grid__label">
+          {%- if block.settings.title != blank -%}
+            {{ block.settings.title }}
+          {%- else -%}
+            {{ block.settings.collection.title }}
+          {%- endif -%}
+        </span>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Teks Teks Category Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Shop by Category"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "rem",
+      "label": "Padding Top",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "rem",
+      "label": "Padding Bottom",
+      "default": 8
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Custom Image (Optional)"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Custom Title (Optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Teks Teks Category Grid",
+      "blocks": [
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" }
+      ]
+    }
+  ]
+}
+{% endschema %}
