@@ -1,18 +1,19 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "announcement_marquee": {
-      "type": "announcement-marquee",
-      "settings": {
-        "text": "FREE UK DELIVERY ON ORDERS OVER £100 | PRICE MATCH PROMISE | NEW ARRIVALS JUST LANDED",
-        "bg_color": "#FCFBF7",
-        "text_color": "#2D2D2D",
-        "scroll_speed": 20
-      }
-    },
-    "teks_hero": {
+    "teks_hero_pPznxr": {
       "type": "teks-hero",
+      "name": "Teks Teks Hero",
       "settings": {
-        "image": "teks-hero.png",
+        "image_position": "center",
         "overlay_opacity": 20,
         "title": "Luxury interiors, beautifully curated",
         "description": "Furniture and décor designed to elevate modern homes.",
@@ -20,100 +21,72 @@
         "desktop_height": 90,
         "mobile_height": 70,
         "button_label_1": "Shop Bestsellers",
-        "button_link_1": "shopify://collections/all",
+        "button_link_1": "",
         "button_label_2": "Shop New In",
-        "button_link_2": "shopify://collections/all"
+        "button_link_2": ""
       }
     },
-    "teks_category_grid": {
-      "type": "teks-category-grid",
-      "blocks": {
-        "cat_1": {
-          "type": "category",
-          "settings": {
-            "title": "Bedroom",
-            "image": "teks-hero.png"
-          }
-        },
-        "cat_2": {
-          "type": "category",
-          "settings": {
-            "title": "Seating",
-            "image": "teks-cat-seating.png"
-          }
-        },
-        "cat_3": {
-          "type": "category",
-          "settings": {
-            "title": "Tables",
-            "image": "teks-cat-tables.png"
-          }
-        },
-        "cat_4": {
-          "type": "category",
-          "settings": {
-            "title": "Lighting",
-            "image": "teks-cat-lighting.png"
-          }
-        }
-      },
-      "block_order": [
-        "cat_1",
-        "cat_2",
-        "cat_3",
-        "cat_4"
-      ],
-      "settings": {
-        "title": "Shop by Category",
-        "padding_top": 8,
-        "padding_bottom": 8
-      }
-    },
-    "featured_collection": {
-      "type": "featured-collection",
-      "settings": {
-        "collection": "all",
-        "products_to_show": 4,
-        "title": "New In",
-        "heading_size": "h2",
-        "columns_desktop": 4,
-        "color_scheme": "scheme-1",
-        "image_ratio": "portrait",
-        "show_secondary_image": true,
-        "quick_add": "standard"
-      }
-    },
-    "teks_editorial_1": {
+    "teks_editorial_tTikGq": {
       "type": "teks-editorial",
+      "name": "Teks Teks Editorial",
       "settings": {
-        "image": "teks-hero.png",
         "image_position": "left",
         "subtitle": "Signature Style",
         "title": "Modern Luxe Living",
         "description": "Discover considered combinations, styled to inspire and designed to elevate every space.",
         "button_label": "Shop the Look",
-        "button_link": "shopify://collections/all"
+        "button_link": ""
       }
     },
-    "teks_editorial_2": {
-      "type": "teks-editorial",
+    "teks_category_grid_GcpXAG": {
+      "type": "teks-category-grid",
+      "blocks": {
+        "category_rJMLeA": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        },
+        "category_QPrx7N": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        },
+        "category_X4Jer8": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        },
+        "category_FjeKmr": {
+          "type": "category",
+          "settings": {
+            "collection": "",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "category_rJMLeA",
+        "category_QPrx7N",
+        "category_X4Jer8",
+        "category_FjeKmr"
+      ],
+      "name": "Teks Teks Category Grid",
       "settings": {
-        "image": "teks-cat-seating.png",
-        "image_position": "right",
-        "subtitle": "Downton Signature",
-        "title": "Contemporary Elegance",
-        "description": "Luxury bedroom pieces designed for calm living and refined comfort.",
-        "button_label": "Explore Collection",
-        "button_link": "shopify://collections/all"
+        "title": "Shop by Category",
+        "padding_top": 8,
+        "padding_bottom": 8
       }
     }
   },
   "order": [
-    "announcement_marquee",
-    "teks_hero",
-    "teks_category_grid",
-    "featured_collection",
-    "teks_editorial_1",
-    "teks_editorial_2"
+    "teks_hero_pPznxr",
+    "teks_editorial_tTikGq",
+    "teks_category_grid_GcpXAG"
   ]
 }
