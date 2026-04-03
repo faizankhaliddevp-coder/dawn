@@ -1,5 +1,16 @@
 {
   "sections": {
+    "announcement_marquee": {
+      "type": "announcement-marquee",
+      "settings": {
+        "announcement_text": "Welcome to our store! Free shipping on orders over $50.",
+        "bg_color": "#000000",
+        "text_color": "#ffffff",
+        "padding": 12,
+        "font_size": 14,
+        "speed": 15
+      }
+    },
     "image_banner": {
       "type": "image-banner",
       "blocks": {
@@ -200,6 +211,7 @@
     }
   },
   "order": [
+    "announcement_marquee",
     "image_banner",
     "rich_text",
     "featured_collection",
